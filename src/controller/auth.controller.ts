@@ -19,8 +19,3 @@ export const login = catchAsyncErrors(async(req: Request, res: Response)=>{
     if(!passwordMatch)return res.status(401).json({message: "incorect password"})
     return res.status(200).json({user: {...user.toObject(), password: undefined}, token: await user.generateJWT()})
 })
-
-// UserModel.deleteMany({})
-// .then(()=>{
-//     console.log("sanitized")
-// })
