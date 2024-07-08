@@ -7,6 +7,7 @@ import { connectDB } from "./config/db.config"
 import * as config from "./config/config"
 
 import authRouter from "./router/auth.router"
+import blogRouter from "./router/blog.router"
 
 const app = express()
 
@@ -23,6 +24,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
 app.use("/api/v1/auth", authRouter)
+app.use("/api/v1/blogs", blogRouter)
 
 async function start() {
     const server = http.createServer(app)

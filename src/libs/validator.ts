@@ -12,14 +12,16 @@ class Validator{
         return Joi.object({
             title: Joi.string().required(),
             content: Joi.string().required(),
-            tags: Joi.array()
+            tags: Joi.any()
         }).validate(obj)
     }
-    // validateCreateComentPayload(obj: object){
-    //     return Joi.object({
-    //         // postId
-    //     })
-    // }
+    validatUpdateBlogPayload(obj: object){
+        return Joi.object({
+            title: Joi.string(),
+            content: Joi.string(),
+            tags: Joi.any()
+        }).validate(obj)
+    }
 }
 
 
