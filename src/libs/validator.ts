@@ -22,6 +22,12 @@ class Validator{
             tags: Joi.any()
         }).validate(obj)
     }
+
+    validateCreateCommentPayload(obj: object){
+        return Joi.object({
+            body: Joi.string().required()
+        }).validate(obj)
+    }
 }
 
 

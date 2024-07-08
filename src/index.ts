@@ -8,6 +8,7 @@ import * as config from "./config/config"
 
 import authRouter from "./router/auth.router"
 import blogRouter from "./router/blog.router"
+import commentRouter from "./router/comment.router"
 
 const app = express()
 
@@ -25,6 +26,7 @@ app.use(express.urlencoded({extended: true}))
 
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/blogs", blogRouter)
+app.use("/api/v1/comments", commentRouter)
 
 async function start() {
     const server = http.createServer(app)
