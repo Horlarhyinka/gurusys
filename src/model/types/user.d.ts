@@ -4,6 +4,6 @@ export interface User extends Document{
     username: string
     password: string
     comparePassword: (plain: string)=>Promise<boolean>
-    generateJWT: ()=>string
+    generateJWT: ()=>Promise<string>
 }
 

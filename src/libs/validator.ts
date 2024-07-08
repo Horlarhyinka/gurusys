@@ -20,3 +20,7 @@ class Validator{
         })
     }
 }
+
+
+const validator = new Validator()
+export default Object.freeze(validator)

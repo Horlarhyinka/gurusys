@@ -6,6 +6,8 @@ import http from "http"
 import { connectDB } from "./config/db.config"
 import * as config from "./config/config"
 
+import authRouter from "./router/auth.router"
+
 const app = express()
 
 const limiter = rateLimit({
@@ -19,6 +21,8 @@ app.use(cors({ origin: "*"}))
 app.use(helmet())
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+
+app.use("/api/v1/auth", authRouter)
 
 async function start() {
     const server = http.createServer(app)
