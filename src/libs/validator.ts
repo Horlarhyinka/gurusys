@@ -7,6 +7,7 @@ class Validator{
             password: Joi.string().required().min(6)
         }).validate(obj)
     }
+
     validateCreateBlogPayload(obj: object){
         return Joi.object({
             title: Joi.string().required(),
@@ -14,11 +15,11 @@ class Validator{
             tags: Joi.array()
         }).validate(obj)
     }
-    validateCreateComentPayload(obj: object){
-        return Joi.object({
-            // postId
-        })
-    }
+    // validateCreateComentPayload(obj: object){
+    //     return Joi.object({
+    //         // postId
+    //     })
+    // }
 }
 
 
