@@ -21,7 +21,7 @@ Gurusys is a Node.js and Express-based application with user authentication, blo
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/gurusys.git
+    git clone https://github.com/Horlarhyinka/gurusys.git
     ```
 
 2. Install dependencies:
