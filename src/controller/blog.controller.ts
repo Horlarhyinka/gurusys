@@ -20,25 +20,25 @@ export const getBlogs = catchAsyncErrors(async(req: Request, res: Response)=>{
     const filters = ["authorid", "title", "tags", "content"]
 
     if(!filter || !filters.includes(filter?.toString().toLowerCase()) || !value){
-     const blogs = await BlogModel.find({}).sort("-createdAt").skip((page - 1) * size).limit(size)
+     const blogs = await BlogModel.find({}).sort("-createdAt").skip((page - 1) * size).limit(size).populate({ path: "author", select: "-password"})
      const total = await BlogModel.countDocuments({}).sort("-createdAt")
      return res.status(200).json({ page, size, filter, total, data: blogs })
     }
 
     if(filter.toString().toLowerCase() === "authorid"){
-     const blogs = await BlogModel.find({author: value}).sort("-createdAt").skip((page - 1) * size).limit(size)
+     const blogs = await BlogModel.find({author: value}).sort("-createdAt").skip((page - 1) * size).limit(size).populate({ path: "author", select: "-password"})
      const total = await BlogModel.countDocuments({}).sort("-createdAt")
      return res.status(200).json({ page, size, filter, total, data: blogs })
     }else if(filter === "tag"){
         const q = { tags: { $in: Array.isArray(value)? value: [value] } }
-        const blogs = await BlogModel.find(q).sort("-createdAt").skip((page - 1) * size).limit(size)
+        const blogs = await BlogModel.find(q).sort("-createdAt").skip((page - 1) * size).limit(size).populate({ path: "author", select: "-password"})
      const total = await BlogModel.countDocuments(q)
      return res.status(200).json({ page, size, filter, total, data: blogs })
     }else{
         const q = {
             [filter.toString()]: { $regex: new RegExp(value.toString(), "i") }
         }
-        const blogs = await BlogModel.find(q).sort("-createdAt").skip((page - 1) * size).limit(size)
+        const blogs = await BlogModel.find(q).sort("-createdAt").skip((page - 1) * size).limit(size).populate({ path: "author", select: "-password"})
         const total = await BlogModel.countDocuments(q).sort("-createdAt")
         return res.status(200).json({ page, size, filter, total, data: blogs })
     }
